@@ -141,6 +141,29 @@ Sanitized draft
 | `GEMINI_MODEL`  | `gemini-flash-latest`  | Model override (stable alias for the newest flash model) |
 | `BACKEND_URL`   | `http://127.0.0.1:8000`| Backend URL used by the UI  |
 
+## Deployment (one public URL)
+
+The repo ships a single-container OCI setup (`Containerfile`, built with
+Podman) that runs **nginx + Streamlit + FastAPI** behind **one public port**
+(`$PORT`, default 8080):
+
+- `/` → Streamlit UI (WebSocket-proxied)
+- `/health` → FastAPI health endpoint
+- `/api/…` → FastAPI (same-origin API, e.g. `POST /api/generate`)
+
+Local test with Podman:
+
+```bash
+podman build -t lexcraft .
+podman run --rm -p 8080:8080 --env-file .env lexcraft
+# open http://localhost:8080
+```
+
+Hosted deployment (Render free tier): connect the repo and use the committed
+`render.yaml` Blueprint, or create a Docker web service with health check
+`/health`. Set `GEMINI_API_KEY` in the hosting dashboard only — it is never
+committed. See `deploy/` for the proxy and process-manager configuration.
+
 ## Scope note
 
 LexCraft AI generates legal-document drafts from user-provided information.

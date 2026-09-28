@@ -1,0 +1,19 @@
+# Podman/buildah build-context exclusions (same syntax as .dockerignore).
+# Secrets and local artifacts must NEVER enter the image.
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+*.log
+_spec_extract.txt
+_uvicorn.log
+_streamlit.log
+deploy/render.yaml
+Containerfile
+.containerignore

@@ -1,0 +1,20 @@
+# Render Blueprint — creates the LexCraft AI single-container web service.
+# Deploy: Render dashboard → New → Blueprint → pick Nazirkhaan/LexCraft-AI.
+#
+# SECURITY: GEMINI_API_KEY is a dashboard-managed secret (sync: false).
+# It is NEVER stored in this file or the repository.
+
+services:
+  - type: web
+    name: lexcraft-ai
+    runtime: docker          # OCI image built by Render from the Containerfile
+    plan: free
+    region: singapore        # closest free region; change if you prefer
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false          # set the real value in the Render dashboard only
+      - key: GEMINI_MODEL
+        value: gemini-flash-latest

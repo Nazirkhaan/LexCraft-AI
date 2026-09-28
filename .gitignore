@@ -1,0 +1,12 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+_spec_extract.txt
+_uvicorn.log
+_streamlit.log

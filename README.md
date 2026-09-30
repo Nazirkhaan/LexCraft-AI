@@ -138,7 +138,7 @@ Sanitized draft
 | Variable        | Default                | Purpose                     |
 |-----------------|------------------------|-----------------------------|
 | `GEMINI_API_KEY`| — (required)           | Google Gemini API key       |
-| `GEMINI_MODEL`  | `gemini-flash-latest`  | Model override (stable alias for the newest flash model) |
+| `GEMINI_MODEL`  | `gemini-flash-latest`  | Preferred model; the backend auto-retries and falls back through stable aliases on Google-side availability errors |
 | `BACKEND_URL`   | `http://127.0.0.1:8000`| Backend URL used by the UI  |
 
 ## Deployment (one public URL)
